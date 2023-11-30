@@ -1,0 +1,37 @@
+{
+  "name": "sync-wave",
+  "version": "1.0.0",
+  "description": "SyncWave  Description:  SyncWave brings your Spotify and YouTube Music playlists into perfect harmony. No more juggling, no more hassle—just your favorite tunes effortlessly synced across platforms. Discover, add, and enjoy, all in one smooth rhythm. Keep the vibes going with SyncWave. Music made easy. 🎶✨",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "spotify-web-api-node": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@types/spotify-web-api-node": "^5.0.11",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivarchit/sync-wave.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivarchit/sync-wave/issues"
+  },
+  "homepage": "https://github.com/shivarchit/sync-wave#readme"
+}
