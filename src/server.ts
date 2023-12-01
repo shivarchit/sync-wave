@@ -11,8 +11,8 @@ const port = process.env.PORT;
 
 app.use('/api/spotify', spotifySyncRouter);
 app.use('/api/youtube', youtubeSyncRouter);
-app.get('/', (req,res)=>{
-  
+app.get('/', (req, res) => {
+
   res.json("Running on port")
   res.status(200);
 });

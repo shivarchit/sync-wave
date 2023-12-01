@@ -1,55 +1,42 @@
-// spotifySync.ts
+https://developer.spotify.com/documentation/web-api/tutorials/code-flow
+
+https://developer.spotify.com/documentation/web-api/concepts/authorization
+
+
+https://github.com/spotify/web-api/issues/806
 import * as express from 'express';
-import SpotifyWebApi from 'spotify-web-api-node';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
+// import SpotifyBuilder from "./utils/spotify-builder"
+// const spotifyUtil = new SpotifyBuilder();
 const router = express.Router();
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: process.env.SPOTIFY_REDIRECT_URI,
-});
 
-// Spotify authentication route
-router.get('/auth', (req, res) => {
-  const authorizeURL = spotifyApi.createAuthorizeURL(['user-read-private', 'playlist-read-private', 'playlist-modify-private'], 'state', true);
-  res.redirect(authorizeURL);
-});
-
-// Spotify callback route
-router.get('/callback-redirect', async (req, res) => {
-  const { code } = req.query;
-
+router.get('/sync', async (req, res) => {
   try {
-    const data = await spotifyApi.authorizationCodeGrant(code as string);
-    const { access_token, refresh_token } = data.body;
+    try {
+      //  var state = generateRandomString(16);
+      var scope = 'user-read-private user-read-email';
 
-    // Set the access token on the API object
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
-console.log({access_token,refresh_token})
-    res.send('Authentication successful! You can close this window.');
-
-    // In a real application, you would store the access token and refresh token securely.
-    // These tokens are required for subsequent requests to the Spotify API.
-  } catch (error) {
-    console.error('Error getting access token:', error);
-    res.status(500).send('Error getting access token.');
-  }
-});
-
-// Spotify playlist sync route
-router.post('/sync', async (req, res) => {
-  try {
-    // Implement Spotify playlist synchronization logic here
+      res.redirect('https://accounts.spotify.com/authorize?' +
+        querystring.stringify({
+          response_type: 'code',
+          client_id: client_id,
+          scope: scope,
+          redirect_uri: redirect_uri,
+          state: state
+        }));
+      // console.log({ abc: spotifyUtil.getAccessToken() })
+    } catch (error) {
+      console.log(error)
+    }
     res.status(200).json({ message: 'Sync successful' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+const sleep = (milliseconds: number) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
 
 export default router;
