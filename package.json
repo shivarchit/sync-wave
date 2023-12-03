@@ -34,7 +34,6 @@
     "type": "git",
     "url": "git+https://github.com/shivarchit/sync-wave.git"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

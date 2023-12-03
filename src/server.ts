@@ -1,7 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-import spotifySyncRouter from './spotify-sync';
-import youtubeSyncRouter from './youtube-music-sync';
+import spotifySyncRouter from './';
+import youtubeSyncRouter from './youtube-music-sync.js';
 
 dotenv.config();
 

@@ -1,4 +1,3 @@
-// spotifySync.ts
 import * as express from 'express';
 import SpotifyWebApi from 'spotify-web-api-node';
 import * as dotenv from 'dotenv';
@@ -29,7 +28,7 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 // Spotify authentication route
-router.get('/auth', async(req, res) => {
+router.get('/auth', async (req, res) => {
   const authorizeURL = spotifyApi.createAuthorizeURL(['user-read-private', 'playlist-read-private', 'playlist-modify-private'], 'state', false);
   await open(authorizeURL)
   res.redirect(authorizeURL);
@@ -67,4 +66,6 @@ router.post('/sync', async (req, res) => {
   }
 });
 
-export default router;
+export default (): express.Router => {
+  return router;
+};
