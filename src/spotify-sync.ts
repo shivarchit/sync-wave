@@ -2,6 +2,21 @@
 import * as express from 'express';
 import SpotifyWebApi from 'spotify-web-api-node';
 import * as dotenv from 'dotenv';
+// server.ts
+let open: any;  // Assuming that 'open' has an 'any' type
+
+(async () => {
+  try {
+    const openModule = await import('open');
+    open = openModule.default || openModule;  // In case 'openModule' doesn't have a 'default' export
+
+    // Now you can use 'open' in your server logic
+    // For example:
+    open('https://www.example.com');
+  } catch (error) {
+    console.error('Error importing open module:', error);
+  }
+})();
 
 dotenv.config();
 
@@ -14,8 +29,9 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 // Spotify authentication route
-router.get('/auth', (req, res) => {
+router.get('/auth', async(req, res) => {
   const authorizeURL = spotifyApi.createAuthorizeURL(['user-read-private', 'playlist-read-private', 'playlist-modify-private'], 'state', false);
+  await open(authorizeURL)
   res.redirect(authorizeURL);
 });
 
@@ -29,10 +45,10 @@ router.get('/callback-redirect', async (req, res) => {
 
     // Set the access token on the API object
     spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);    
-    
-    const me=await spotifyApi.getMe()
-    console.log({me})
+    spotifyApi.setRefreshToken(refresh_token);
+
+    const me = await spotifyApi.getMe()
+    console.log({ me })
     res.send('Authentication successful! You can close this window.');
   } catch (error) {
     console.error('Error getting access token:', error);

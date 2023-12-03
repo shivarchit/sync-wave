@@ -1,7 +1,7 @@
 {
   "name": "sync-wave",
   "version": "1.0.0",
-  "description": "SyncWave  Description:  SyncWave brings your Spotify and YouTube Music playlists into perfect harmony. No more juggling, no more hassle—just your favorite tunes effortlessly synced across platforms. Discover, add, and enjoy, all in one smooth rhythm. Keep the vibes going with SyncWave. Music made easy. 🎶✨",
+  "description": "SyncWave  Description:  SyncWave brings your Spotify and YouTube Music playlists into perfect harmony. No more juggling, no more hassle—just your favorite tunes effortlessly synced across platforms. Discover, add, and enjoy, all in one smooth rhythm. Keep the vibes going with SyncWave. Music made easy. 🎶✨",  
   "main": "index.js",
   "dependencies": {
     "@spotify/web-api-ts-sdk": "1.0.0",
@@ -10,6 +10,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
+    "open": "^9.1.0",
     "puppeteer": "^21.5.2",
     "spotify-web-api-node": "^5.0.2"
   },
@@ -25,13 +26,15 @@
     "build": "npx tsc",
     "start": "ts-node-dev src/server.ts",
     "debug": "nodemon --inspect-brk -r ts-node/register src/server.ts",
-    "dev": "nodemon dist/server.js"
+    "dev": "nodemon dist/server.js",
+    "debug-ts-node": "nodemon -r ts-node/register src/server.ts",
+    "debug-dist": "nodemon --inspect-brk dist/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shivarchit/sync-wave.git"
   },
-  "type": "commonjs",
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
