@@ -36,4 +36,4 @@ app.get("/", (req: express.Request, res: express.Response) => {
 
     res.json(`Running on port ${globalThis.configurationObject.PORT}`)
 })
-app.use('/api/', router());
+app.use('/api', router());

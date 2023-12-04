@@ -8,6 +8,7 @@ const router = express.Router();
 // import { login, register } from '../controllers/authentication';
 
 export default (router: express.Router) => {
-  router.get('/auth/getToken', getAuthenticationToken);
-//   router.post('/auth/login', login);
+    router.get('/auth', getAuthenticationToken);
+    //   router.post('/auth/login', login);
+    // return router;
 };
