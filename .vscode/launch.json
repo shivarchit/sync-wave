@@ -7,7 +7,7 @@
       "request": "launch",
       "name": "Debug TypeScript",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceFolder}/src/server.ts"],
+      "args": ["${workspaceFolder}/src/app.ts"],
       "sourceMaps": true,
       "protocol": "inspector"
     }
