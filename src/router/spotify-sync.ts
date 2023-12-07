@@ -1,14 +1,8 @@
 import express from 'express';
 
-import { getAuthenticationToken } from "../controllers/spotify-controller"
-
-
-const router = express.Router();
-
-// import { login, register } from '../controllers/authentication';
+import { getAuthenticationToken, startAuthentication } from "../controllers/spotify-controller"
 
 export default (router: express.Router) => {
-    router.get('/auth', getAuthenticationToken);
-    //   router.post('/auth/login', login);
-    // return router;
+    router.get('/auth', startAuthentication);
+    router.get("/callback-redirect", getAuthenticationToken)    
 };
