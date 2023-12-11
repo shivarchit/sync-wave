@@ -1,17 +1,15 @@
 import express from 'express';
 
 import spotifySync from './spotify-sync';
-// import users from './users';
+import youtubeSync from './youtube-sync';
 
 const router = express.Router();
 
 export default (): express.Router => {
-  // spotifySync(router.use("/spotify"));
   spotifySync(router);
-
-  // Prepend /spotify to all routes defined in the spotifyRouter
+  youtubeSync(router);
   router.use('/spotify', router);
-  //   users(router);
+  router.use('/youtube', router);
 
   return router;
 };
