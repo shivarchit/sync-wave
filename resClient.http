@@ -1,0 +1,6 @@
+GET  http://localhost:6969/api/spotify/auth HTTP/1.1
+
+
+
+###
+GET http://localhost:6969/api/youtube/auth HTTP/2.1

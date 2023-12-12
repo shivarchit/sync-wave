@@ -6,13 +6,14 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
-import router from './router';
-// import mongoose from 'mongoose';
 declare global {
     var configurationObject: NodeJS.ProcessEnv;
 }
-const app = express();
 global.configurationObject = process.env;
+import router from './router';
+
+const app = express();
+
 app.use(cors({
     credentials: true,
 }));
